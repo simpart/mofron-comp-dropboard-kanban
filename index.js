@@ -10,11 +10,10 @@ require('mofron-comp-dropboard');
  */
 mofron.comp.dropboard.Kanban = class extends mofron.comp.DropBoard {
     
-    constructor (prm_opt) {
+    constructor (po) {
         try {
-            super();
+            super(po);
             this.name('Kanban');
-            this.prmOpt(prm_opt);
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -52,9 +51,9 @@ mofron.comp.dropboard.Kanban = class extends mofron.comp.DropBoard {
         }
     }
     
-    addChild (chd, disp, idx) {
+    addChild (chd, idx) {
         try {
-            super.addChild(chd, disp, idx);
+            super.addChild(chd, idx);
             let evt     = chd.event();
             let add_flg = false;
             for (let evt_idx in evt) {
@@ -75,18 +74,16 @@ mofron.comp.dropboard.Kanban = class extends mofron.comp.DropBoard {
     
     reposChild () {
         try {
-            let sz = this.size();
-            if ((null === sz[0]) || ('number' !== typeof sz[0])) {
-                return;
-            }
-            let chd_wid  = Math.floor(sz[0] * 0.9);
-            let chd_left = Math.floor((sz[0] - chd_wid) / 2);
+            let sz       = this.size();
+            let rate_flg = ('number' !== typeof sz[0]) ? true : false;
+            let chd_wid  = (true === rate_flg) ? '90%' : Math.floor(sz[0] * 0.9) + 'px';
+            let chd_left = (true === rate_flg) ? '5%'  : Math.floor((sz[0] - chd_wid) / 2) + 'px';
             let chd      = this.child();
             for (let chd_idx in chd) {
                 chd[chd_idx].style({
-                    width    : chd_wid + 'px'  ,
-                    position : 'relative'      ,
-                    left     : chd_left + 'px' ,
+                    width    : chd_wid    ,
+                    position : 'relative' ,
+                    left     : chd_left   ,
                     top      : 15 + (chd_idx * 15) + 'px'
                 });
             }
@@ -99,13 +96,8 @@ mofron.comp.dropboard.Kanban = class extends mofron.comp.DropBoard {
     dropped (cmp) {
         try {
             /* dragend event on this component */
+            super.dropped(cmp);
             this.dragLeave();
-            let chd = this.child();
-            for (let chd_idx in chd) {
-                if (chd[chd_idx].target().getId() === cmp.target().getId()) {
-                    return;
-                }
-            }
             this.addChild(cmp);
         } catch (e) {
             console.error(e.stack);

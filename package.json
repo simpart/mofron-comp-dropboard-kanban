@@ -1,6 +1,6 @@
 {
   "name": "mofron-comp-dropboard-kanban",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "dropboard of mofron component for Kanban",
   "main": "index.js",
   "scripts": {
