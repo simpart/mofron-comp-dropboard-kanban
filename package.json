@@ -1,7 +1,7 @@
 {
-  "name": "mofron-comp-dropboard-kanban",
-  "version": "0.0.2",
-  "description": "dropboard of mofron component for Kanban",
+  "name": "mofron-comp-kanbanboard",
+  "version": "0.1.0",
+  "description": "this component was renamed to mofron-comp-kanbanboard",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,9 @@
     "url": "git+https://github.com/simpart/mofron-comp-dropboard-kanban.git"
   },
   "dependencies": {
-    "mofron-comp-dropboard" : ""
+    "mofron-effect-center" : "",
+    "mofron-effect-shadow" : "",
+    "mofron-event-drag" : ""
   },
   "keywords": [
     "mofron"
