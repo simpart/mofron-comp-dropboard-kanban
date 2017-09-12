@@ -190,6 +190,7 @@ mf.comp.KanbanBoard = class extends Dropbd {
             for (let cidx in chd) {
                 if (chd[cidx].getId() === cmp.getId()) {
                     /* parameter component is already dropped */
+                    this.dragLeave();
                     return;
                 }
             }
