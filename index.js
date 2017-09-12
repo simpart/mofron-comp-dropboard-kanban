@@ -93,12 +93,7 @@ mf.comp.KanbanBoard = class extends Dropbd {
                     setTimeout(
                         (prm) => {
                             try {
-console.log("drag end");
                                 prm.reposChild();
-                                //let eff = prm.effect();
-                                //for (let eidx in eff) {
-                                //    eff[eidx][0].execute(false);
-                                //}
                             } catch (e) {
                                 console.error(e.stack);
                                 throw e;
@@ -170,14 +165,15 @@ console.log("drag end");
             let rep_chd  = this.child();
             
             for (let cidx in rep_chd) {
-                if (true === mf.func.isInclude(rep_chd[cidx], 'Card')) {
-                    rep_chd[cidx].style({
-                        width    : chd_wid    ,
-                        position : 'relative' ,
-                        left     : chd_left   ,
-                        top      : 15 + (cidx * 15) + 'px'
-                    });
+                if (0 == cidx) {
+                    continue;
                 }
+                rep_chd[cidx].style({
+                    width    : chd_wid    ,
+                    position : 'relative' ,
+                    left     : chd_left   ,
+                    top      : 15 + (cidx * 15) + 'px'
+                });
             }
         } catch (e) {
             console.error(e.stack);
